@@ -18,6 +18,8 @@ export interface Question {
   suboptimalCode: string;
   mistakes: QuestionMistake[];
   proTips: string[];
+  hints: string[];
+  explanation: string;
 }
 
 export interface Topic {

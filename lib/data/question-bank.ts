@@ -68,6 +68,12 @@ export const QUESTIONS: Record<string, Question[]> = {
         "Always use the functional update form of setState when the new state depends on the old state.",
         "The exhaustive-deps lint rule is your best friend.",
       ],
+      hints: [
+        "Check what happens to the interval when count changes.",
+        "Think about closures and when the useEffect function is created.",
+      ],
+      explanation:
+        "When an empty dependency array is used, the effect runs only once. The closure inside setInterval captures the initial value of 'count' (0). Using a functional update `setCount(c => c + 1)` allows React to use the latest state without closure stale issues.",
     },
     {
       id: "h3",
@@ -115,6 +121,12 @@ export const QUESTIONS: Record<string, Question[]> = {
         "useRef is perfect for values that need to persist between renders but don't need to trigger a re-render.",
         "Consider uncontrolled components for performance-heavy forms.",
       ],
+      hints: [
+        "Watch the console to see how many times the component renders.",
+        "Do we really need to update the UI on every keystroke?",
+      ],
+      explanation:
+        "Using `useState` for every keystroke in a form causes the entire component to re-render. `useRef` allows you to store the value without triggering renders, which is much more performant for simple input fields.",
     },
   ],
   performance: [
@@ -165,6 +177,12 @@ function Parent() {
         "Move static objects outside the component to preserve reference equality.",
         "Use useMemo for objects that depend on state or props.",
       ],
+      hints: [
+        "React.memo uses shallow comparison for props.",
+        "Is `{ theme: 'dark' }` the same object on every render?",
+      ],
+      explanation:
+        "Object literals create a new reference on every render. Since `React.memo` performs a shallow comparison, it sees a 'new' object every time, causing the child to re-render unnecessarily.",
     },
     {
       id: "p2",
@@ -204,6 +222,12 @@ function Parent() {
         "Always use a unique, stable ID for keys (like database IDs).",
         "If you must use index, ensure the list is static and won't change.",
       ],
+      hints: [
+        "What happens if we reverse the items in the list?",
+        "Does the index stick to the item or the position?",
+      ],
+      explanation:
+        "React uses keys to identify which items have changed, been added, or been removed. Using the index as a key is problematic when the order of items changes, as React may reuse the wrong component state for an item.",
     },
     {
       id: "p3",
@@ -238,6 +262,12 @@ function Parent() {
         },
       ],
       proTips: ["Don't use state for things that can be calculated from props or other state."],
+      hints: [
+        "How many times does this component render when 'users' changes?",
+        "Can we calculate 'filteredUsers' during the render phase?",
+      ],
+      explanation:
+        "Setting state in `useEffect` based on prop changes causes a second render cycle. For simple filtering, you should either calculate it during the render or wrap the calculation in `useMemo` if it's expensive.",
     },
   ],
   patterns: [
@@ -287,6 +317,12 @@ function Select({ children }) {
       proTips: [
         "Prefer Context API for state sharing in Compound Components to allow nested children.",
       ],
+      hints: [
+        "Check how deeply the children map goes.",
+        "What happens if we put a div around one of the options?",
+      ],
+      explanation:
+        "React.Children.map only iterates over immediate children. Moving logic into a Context allows any descendant component to access the state, making the compound component much more flexible.",
     },
     {
       id: "pat2",
@@ -326,6 +362,12 @@ function App({ user }) {
       proTips: [
         "Before reaching for Context, consider if you can pass the child component itself as a prop (Composition).",
       ],
+      hints: [
+        "Does the Navbar component really need to know about the User?",
+        "How many levels deep is the data being passed?",
+      ],
+      explanation:
+        "Prop drilling makes code hard to maintain because intermediate components become tightly coupled to data they don't use. Context provides a way to share values like these between components without having to explicitly pass a prop through every level of the tree.",
     },
     {
       id: "pat3",
@@ -368,6 +410,12 @@ function App({ user }) {
         },
       ],
       proTips: ["Use Custom Hooks to share stateful logic cleaner than Render Props or HOCs."],
+      hints: [
+        "Notice the 'pyramid of doom' structure.",
+        "Is there a flatter way to access these values?",
+      ],
+      explanation:
+        "Render props can lead to deeply nested code (wrapper hell). Hooks allow you to extract stateful logic into flat, reusable functions, significantly improving readability and composability.",
     },
   ],
 };
