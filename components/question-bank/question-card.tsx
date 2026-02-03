@@ -28,30 +28,32 @@ export function QuestionCard({
   return (
     <div className="mb-8 overflow-hidden rounded-2xl border border-gray-200 bg-white shadow-sm dark:border-gray-800 dark:bg-gray-950">
       {/* Header */}
-      <div className="flex items-start justify-between gap-4 border-b border-gray-200 p-6 dark:border-gray-800">
+      <div className="flex flex-col items-start justify-between gap-4 border-b border-gray-200 p-4 sm:flex-row sm:items-center sm:p-6 dark:border-gray-800">
         <div className="space-y-1">
-          <div className="flex items-center gap-3">
+          <div className="flex flex-wrap items-center gap-3">
             <DifficultyBadge difficulty={question.difficulty} />
-            <h2 className="text-xl font-bold text-gray-900 dark:text-white">{question.title}</h2>
+            <h2 className="text-lg font-bold text-gray-900 sm:text-xl dark:text-white">
+              {question.title}
+            </h2>
           </div>
           <p className="text-sm leading-relaxed text-gray-500 dark:text-gray-400">
             {question.description}
           </p>
         </div>
-        <div className="flex items-center gap-2">
+        <div className="flex w-full items-center gap-2 sm:w-auto">
           <button
             onClick={() => toggleSaved(question.id)}
-            className={`rounded-lg border p-2 transition-all ${
+            className={`flex-1 rounded-lg border p-2 transition-all sm:flex-initial ${
               saved
                 ? "border-blue-200 bg-blue-50 text-blue-600 dark:border-blue-800 dark:bg-blue-950"
                 : "border-gray-200 bg-white text-gray-400 hover:text-gray-600 dark:border-gray-700 dark:bg-gray-900"
             }`}
           >
-            <Bookmark className={`h-5 w-5 ${saved ? "fill-current" : ""}`} />
+            <Bookmark className={`mx-auto h-5 w-5 sm:mx-0 ${saved ? "fill-current" : ""}`} />
           </button>
           <button
             onClick={() => toggleCompleted(question.id)}
-            className={`flex items-center gap-2 rounded-lg border px-4 py-2 text-sm font-semibold transition-all ${
+            className={`flex flex-1 items-center justify-center gap-2 rounded-lg border px-4 py-2 text-sm font-semibold transition-all sm:flex-initial sm:justify-start ${
               completed
                 ? "border-emerald-200 bg-emerald-50 text-emerald-600 dark:border-emerald-800 dark:bg-emerald-950"
                 : "border-emerald-600 bg-emerald-500 text-white shadow-md shadow-emerald-500/20 hover:bg-emerald-600"
@@ -66,7 +68,7 @@ export function QuestionCard({
       {/* Main Content Area */}
       <div className="flex flex-col divide-y border-gray-200 lg:flex-row lg:divide-x lg:divide-y-0 dark:divide-gray-800">
         {/* Main Section (Code or Tips) */}
-        <div className="flex-1 bg-gray-50/50 p-6 dark:bg-gray-900/30">
+        <div className="flex-1 bg-gray-50/50 p-4 sm:p-6 dark:bg-gray-900/30">
           <div className="mb-4 flex items-center justify-between">
             <div className="flex items-center gap-1 rounded-lg bg-gray-200/50 p-1 dark:bg-gray-800">
               <button
@@ -137,7 +139,7 @@ export function QuestionCard({
                 </ul>
               </div>
             ) : (
-              <div className="custom-scrollbar relative overflow-x-auto p-4 font-mono text-[13px] leading-6">
+              <div className="custom-scrollbar relative overflow-x-auto p-3 font-mono text-xs leading-6 sm:p-4 sm:text-[13px]">
                 <div
                   dangerouslySetInnerHTML={{
                     __html: activeTab === "solution" ? highlightedSolution : highlightedCode,
@@ -189,7 +191,7 @@ export function QuestionCard({
         </div>
 
         {/* Sidebar Section */}
-        <div className="w-full bg-white p-6 lg:w-80 dark:bg-gray-950">
+        <div className="w-full bg-white p-4 sm:p-6 lg:w-80 dark:bg-gray-950">
           {activeTab === "problem" && <SidebarContent type="hints" content={question.hints} />}
           {activeTab === "solution" && (
             <SidebarContent type="explanation" content={question.explanation} />

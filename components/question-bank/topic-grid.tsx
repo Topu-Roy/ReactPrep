@@ -20,7 +20,7 @@ export function TopicGrid({ progress = {} }: TopicGridProps) {
           <Link
             key={topic.id}
             href={`/topics/${topic.slug}`}
-            className="group block rounded-xl border border-gray-200 bg-white p-6 shadow-sm transition-all hover:border-blue-500 dark:border-gray-800 dark:bg-gray-900 dark:hover:border-blue-500"
+            className="group block rounded-xl border border-gray-200 bg-white p-5 shadow-sm transition-all hover:border-blue-500 sm:p-6 dark:border-gray-800 dark:bg-gray-900 dark:hover:border-blue-500"
           >
             <div className="mb-4 flex items-center gap-4">
               <div className="rounded-lg bg-blue-50 p-3 text-blue-600 transition-transform group-hover:scale-110 dark:bg-blue-950/30 dark:text-blue-400">

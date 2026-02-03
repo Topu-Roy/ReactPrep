@@ -17,8 +17,8 @@ export function QuestionBankLayout({ children }: QuestionBankLayoutProps) {
             <Separator orientation="vertical" className="mr-2 h-4" />
           </div>
         </header>
-        <div className="flex flex-1 flex-col gap-4 p-4 pt-0">
-          <div className="mx-auto w-full max-w-5xl py-6">{children}</div>
+        <div className="flex flex-1 flex-col gap-4 p-4 pt-0 sm:gap-6">
+          <div className="mx-auto w-full max-w-5xl py-4 sm:py-8">{children}</div>
         </div>
       </SidebarInset>
     </SidebarProvider>
