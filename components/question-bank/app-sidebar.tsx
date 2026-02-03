@@ -12,9 +12,11 @@ import {
   SidebarMenuButton,
   SidebarMenuItem,
   SidebarRail,
+  SidebarSeparator,
 } from "@/components/ui/sidebar";
 import { TOPICS } from "@/lib/data/question-bank";
 import { NavMain } from "./nav-main";
+import { NavSecondary } from "./nav-secondary";
 import { NavUser } from "./nav-user";
 
 const data = {
@@ -35,6 +37,18 @@ const data = {
       icon: (Icons as unknown as Record<string, Icons.LucideIcon>)[topic.icon] || Icons.HelpCircle,
     })),
   ],
+  navSecondary: [
+    {
+      title: "Support",
+      url: "/support",
+      icon: Icons.LifeBuoy,
+    },
+    {
+      title: "Settings",
+      url: "/settings",
+      icon: Icons.Settings2,
+    },
+  ],
 };
 
 export function AppSidebar({ ...props }: React.ComponentProps<typeof Sidebar>) {
@@ -49,8 +63,10 @@ export function AppSidebar({ ...props }: React.ComponentProps<typeof Sidebar>) {
                   <Icons.Atom className="size-4 text-white" />
                 </div>
                 <div className="grid flex-1 text-left text-sm leading-tight">
-                  <span className="truncate font-semibold">React Prep</span>
-                  <span className="truncate text-xs">v1.0.0</span>
+                  <span className="truncate font-semibold tracking-wider uppercase">
+                    React Prep
+                  </span>
+                  <span className="truncate text-[10px] opacity-70">v1.2.4</span>
                 </div>
               </Link>
             </SidebarMenuButton>
@@ -59,8 +75,11 @@ export function AppSidebar({ ...props }: React.ComponentProps<typeof Sidebar>) {
       </SidebarHeader>
       <SidebarContent>
         <NavMain items={data.navMain} />
+        <SidebarSeparator />
+        <NavSecondary items={data.navSecondary} className="mt-auto" />
       </SidebarContent>
       <SidebarFooter>
+        <SidebarSeparator />
         <NavUser user={data.user} />
       </SidebarFooter>
       <SidebarRail />
