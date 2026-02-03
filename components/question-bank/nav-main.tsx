@@ -30,7 +30,7 @@ export function NavMain({
             const isActive = pathname === item.url;
             return (
               <SidebarMenuItem key={item.title}>
-                <SidebarMenuButton isActive={isActive} tooltip={item.title}>
+                <SidebarMenuButton asChild isActive={isActive} tooltip={item.title}>
                   <Link href={item.url} className="flex w-full items-center gap-2">
                     {item.icon && <item.icon />}
                     <span>{item.title}</span>
