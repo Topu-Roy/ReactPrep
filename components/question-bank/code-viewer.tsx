@@ -1,6 +1,6 @@
 import { AlertCircle, AlertTriangle, Info } from "lucide-react";
-import { createHighlighter } from "shiki";
 import type { QuestionMistake } from "@/lib/data/types";
+import { getHighlightedCode } from "@/lib/shiki";
 
 interface CodeViewerProps {
   code: string;
@@ -15,18 +15,7 @@ export async function CodeViewer({
   showMistakes = false,
   mistakes = [],
 }: CodeViewerProps) {
-  const highlighter = await createHighlighter({
-    themes: ["github-light", "github-dark"],
-    langs: ["tsx", "typescript", "javascript", "css", "html"],
-  });
-
-  const html = highlighter.codeToHtml(code, {
-    lang: language,
-    themes: {
-      light: "github-light",
-      dark: "github-dark",
-    },
-  });
+  const html = await getHighlightedCode(code, language);
 
   return (
     <div className="group relative overflow-hidden rounded-xl border border-gray-200 bg-gray-50 shadow-inner dark:border-gray-800 dark:bg-gray-900">
