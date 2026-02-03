@@ -1,7 +1,6 @@
-import React from "react";
 import { AlertCircle, AlertTriangle, Info } from "lucide-react";
 import { createHighlighter } from "shiki";
-import type { QuestionMistake } from "@/lib/data/question-bank";
+import type { QuestionMistake } from "@/lib/data/types";
 
 interface CodeViewerProps {
   code: string;

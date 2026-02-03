@@ -1,6 +1,5 @@
-import { clsx } from "clsx";
 import { twMerge } from "tailwind-merge";
-import { Difficulty } from "@/lib/data/question-bank";
+import type { Difficulty } from "@/lib/data/types";
 
 interface DifficultyBadgeProps {
   difficulty: Difficulty;

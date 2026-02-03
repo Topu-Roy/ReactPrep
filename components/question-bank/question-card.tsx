@@ -1,18 +1,24 @@
 "use client";
 
-import React, { useState } from "react";
+import { useState } from "react";
 import { Bookmark, CheckCircle2, Eye, EyeOff } from "lucide-react";
-import type { Question } from "@/lib/data/question-bank";
+import type { Question, QuestionMistake } from "@/lib/data/types";
 import { useQuestionProgress } from "@/lib/hooks/use-progress";
 import { DifficultyBadge } from "./difficulty-badge";
 import { ProTips } from "./pro-tips";
 
 interface QuestionCardProps {
   question: Question;
-  highlightedCode: string; // Pre-rendered HTML from Shiki
+  highlightedCode: string; // Problem HTML
+  highlightedSolution: string; // Solution HTML
 }
 
-export function QuestionCard({ question, highlightedCode }: QuestionCardProps) {
+export function QuestionCard({
+  question,
+  highlightedCode,
+  highlightedSolution,
+}: QuestionCardProps) {
+  const [activeTab, setActiveTab] = useState<"problem" | "solution">("problem");
   const [showMistakes, setShowMistakes] = useState(false);
   const { isCompleted, toggleCompleted, isSaved, toggleSaved } = useQuestionProgress();
 
@@ -62,27 +68,55 @@ export function QuestionCard({ question, highlightedCode }: QuestionCardProps) {
         {/* Code Viewer Section */}
         <div className="flex-1 bg-gray-50/50 p-6 dark:bg-gray-900/30">
           <div className="mb-4 flex items-center justify-between">
-            <h3 className="text-xs font-bold tracking-widest text-gray-400 uppercase">
-              Interactive Snippet
-            </h3>
-            <button
-              onClick={() => setShowMistakes(!showMistakes)}
-              className="flex items-center gap-2 rounded px-2 py-1 text-xs font-bold text-blue-600 transition-colors hover:bg-blue-50 hover:underline dark:text-blue-400 dark:hover:bg-blue-900/30"
-            >
-              {showMistakes ? <EyeOff className="w-3.2 h-3.2" /> : <Eye className="w-3.2 h-3.2" />}
-              {showMistakes ? "Hide Mistakes" : "Reveal Mistakes"}
-            </button>
+            <div className="flex items-center gap-1 rounded-lg bg-gray-200/50 p-1 dark:bg-gray-800">
+              <button
+                onClick={() => setActiveTab("problem")}
+                className={`rounded-md px-3 py-1.5 text-xs font-bold transition-all ${
+                  activeTab === "problem"
+                    ? "bg-white text-blue-600 shadow-sm dark:bg-gray-700 dark:text-blue-400"
+                    : "text-gray-500 hover:text-gray-900 dark:text-gray-400 dark:hover:text-gray-200"
+                }`}
+              >
+                Problem
+              </button>
+              <button
+                onClick={() => setActiveTab("solution")}
+                className={`rounded-md px-3 py-1.5 text-xs font-bold transition-all ${
+                  activeTab === "solution"
+                    ? "bg-white text-blue-600 shadow-sm dark:bg-gray-700 dark:text-blue-400"
+                    : "text-gray-500 hover:text-gray-900 dark:text-gray-400 dark:hover:text-gray-200"
+                }`}
+              >
+                Solution
+              </button>
+            </div>
+            {activeTab === "problem" && (
+              <button
+                onClick={() => setShowMistakes(!showMistakes)}
+                className="flex items-center gap-2 rounded px-2 py-1 text-xs font-bold text-blue-600 transition-colors hover:bg-blue-50 hover:underline dark:text-blue-400 dark:hover:bg-blue-900/30"
+              >
+                {showMistakes ? (
+                  <EyeOff className="h-3.2 w-3.2" />
+                ) : (
+                  <Eye className="h-3.2 w-3.2" />
+                )}
+                {showMistakes ? "Hide Mistakes" : "Reveal Mistakes"}
+              </button>
+            )}
           </div>
 
           <div className="relative overflow-hidden rounded-xl border border-gray-200 bg-white shadow-inner dark:border-gray-800 dark:bg-gray-950">
             <div className="custom-scrollbar relative overflow-x-auto p-4 font-mono text-[13px] leading-6">
               <div
-                dangerouslySetInnerHTML={{ __html: highlightedCode }}
+                dangerouslySetInnerHTML={{
+                  __html: activeTab === "problem" ? highlightedCode : highlightedSolution,
+                }}
                 className="[&>pre]:bg-transparent! [&>pre]:p-0!"
               />
 
-              {showMistakes &&
-                question.mistakes.map((mistake) => (
+              {activeTab === "problem" &&
+                showMistakes &&
+                question.mistakes.map((mistake: QuestionMistake) => (
                   <div
                     key={mistake.id}
                     className="group/mistake pointer-events-none absolute right-0 left-0"

@@ -24,6 +24,7 @@ export default async function TopicSlugPage({ params }: TopicPageProps) {
     questions.map(async (q) => ({
       ...q,
       previewHtml: await getHighlightedCode(q.suboptimalCode, "tsx"),
+      solutionHtml: await getHighlightedCode(q.correctCode, "tsx"),
     }))
   );
 
@@ -44,7 +45,12 @@ export default async function TopicSlugPage({ params }: TopicPageProps) {
 
       <div className="space-y-4">
         {questionsWithHighlight.map((q) => (
-          <QuestionCard key={q.id} question={q} highlightedCode={q.previewHtml} />
+          <QuestionCard
+            key={q.id}
+            question={q}
+            highlightedCode={q.previewHtml}
+            highlightedSolution={q.solutionHtml}
+          />
         ))}
       </div>
     </QuestionBankLayout>
