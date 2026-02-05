@@ -4,16 +4,17 @@
 
 **Master React Interviews with an Interactive Question Bank.**
 
-React Prep is a premium, open-source application designed to help developers ace their React technical interviews. It features a curated collection of questions, interactive code challenges, and deep-dive explanations—all wrapped in a professional, modern user interface.
+React Prep is a premium application designed to help developers ace their React technical interviews. It features a curated collection of questions, interactive code challenges, and deep-dive explanations—all wrapped in a professional, modern user interface.
 
 ## 🚀 Key Features
 
-- **Interactive Code Viewer**: Syntax-highlighted code blocks with a "Reveal Mistakes" mode to spot anti-patterns.
+- **Modern Landing Page**: A tech-savvy, responsive landing page that highlights the platform's value proposition.
+- **Interactive Code Viewer**: Syntax-highlighted code blocks powered by `shiki` with "Reveal Mistakes" mode to spot anti-patterns.
+- **Difficulty Filtering**: Effortlessly filter questions by difficulty level (Easy, Medium, Hard) to match your current skill level.
+- **Sticky Navigation & Breadcrumbs**: A persistent header with dynamic breadcrumbs for seamless navigation throughout the question bank.
 - **Topic-Based Learning**: Questions categorized by core concepts like Hooks, Design Patterns, and Performance.
-- **Context-Aware Sidebar**: Smart sidebar that adapts to show Hints, Explanations, or Pro Tips depending on your current view.
 - **Progress Tracking**: Automatically tracks your completion status using local storage—no account required.
-- **Professional UI**: Built with a polished design system using `shadcn/ui`, featuring a collapsible sidebar, clean typography, and responsive layouts.
-- **Tabbed Interface**: seamlessly switch between the Problem statement, the Solution, and Pro Tips.
+- **Professional UI**: Built with a polished design system using `shadcn/ui`, featuring a collapsible sidebar, clean typography, and full dark mode support.
 
 ## 🛠️ Tech Stack
 
@@ -21,7 +22,9 @@ React Prep is a premium, open-source application designed to help developers ace
 - **Language**: [TypeScript](https://www.typescriptlang.org/)
 - **Styling**: [Tailwind CSS](https://tailwindcss.com/)
 - **UI Components**: [shadcn/ui](https://ui.shadcn.com/)
+- **Code Highlighting**: [Shiki](https://shiki.style/)
 - **Icons**: [Lucide React](https://lucide.dev/)
+- **Database/ORM**: [Prisma](https://www.prisma.io/) (Planned/Partial integration)
 - **Runtime**: [Bun](https://bun.sh/)
 
 ## 🏁 Getting Started
@@ -58,8 +61,9 @@ Ensure you have [Bun](https://bun.sh/) installed on your machine.
 ```bash
 ├── app/                  # Next.js App Directory (Routes & Pages)
 ├── components/           # React Components
-│   ├── question-bank/    # Domain-specific components (Cards, Sidebar, Grid)
-│   └── ui/               # Reusable UI primitives (shadcn)
+│   ├── question-bank/    # Domain-specific components (Cards, Header, List)
+│   ├── ui/               # Reusable UI primitives (shadcn)
+│   └── landing-mobile-nav.tsx # Mobile navigation for the landing page
 ├── lib/
 │   ├── data/             # Static content data (Question Bank)
 │   └── hooks/            # Custom React Hooks
