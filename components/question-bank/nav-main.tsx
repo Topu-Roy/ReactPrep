@@ -2,6 +2,7 @@
 
 import { type LucideIcon } from "lucide-react";
 import Link from "next/link";
+import type { LinkProps } from "next/link";
 import { usePathname } from "next/navigation";
 import {
   SidebarGroup,
@@ -16,7 +17,7 @@ export function NavMain({
 }: {
   items: {
     title: string;
-    url: string;
+    url: LinkProps<string>["href"];
     icon?: LucideIcon;
   }[];
 }) {
