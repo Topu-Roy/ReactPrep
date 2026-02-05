@@ -1,8 +1,7 @@
-// Add Link import
 import Link from "next/link";
 import { notFound } from "next/navigation";
 import { QuestionBankLayout } from "@/components/question-bank/question-bank-layout";
-import { QuestionCard } from "@/components/question-bank/question-card";
+import { QuestionList } from "@/components/question-bank/question-list";
 import { QUESTIONS, TOPICS } from "@/lib/data/question-bank";
 import { getHighlightedCode } from "@/lib/shiki";
 
@@ -43,16 +42,7 @@ export default async function TopicSlugPage({ params }: TopicPageProps) {
         </div>
       </div>
 
-      <div className="space-y-4">
-        {questionsWithHighlight.map((q) => (
-          <QuestionCard
-            key={q.id}
-            question={q}
-            highlightedCode={q.previewHtml}
-            highlightedSolution={q.solutionHtml}
-          />
-        ))}
-      </div>
+      <QuestionList questions={questionsWithHighlight} />
     </QuestionBankLayout>
   );
 }
