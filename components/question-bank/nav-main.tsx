@@ -24,7 +24,7 @@ export function NavMain({
 
   return (
     <SidebarGroup>
-      <SidebarGroupContent>
+      <SidebarGroupContent className="flex flex-col gap-2">
         <SidebarMenu>
           {items.map((item) => {
             const isActive = pathname === item.url;
