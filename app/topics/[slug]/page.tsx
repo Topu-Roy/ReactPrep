@@ -1,3 +1,4 @@
+import { Suspense } from "react";
 import Link from "next/link";
 import { notFound } from "next/navigation";
 import { QuestionBankLayout } from "@/components/question-bank/question-bank-layout";
@@ -5,11 +6,21 @@ import { QuestionList } from "@/components/question-bank/question-list";
 import { QUESTIONS, TOPICS } from "@/lib/data/question-bank";
 import { getHighlightedCode } from "@/lib/shiki";
 
-interface TopicPageProps {
-  params: Promise<{ slug: string }>;
+export default async function TopicSlugPage({ params }: PageProps<"/topics/[slug]">) {
+  return (
+    <Suspense fallback={<div>Loading...</div>}>
+      <TopicSlugPageContent params={params} />
+    </Suspense>
+  );
 }
 
-export default async function TopicSlugPage({ params }: TopicPageProps) {
+async function TopicSlugPageContent({
+  params,
+}: {
+  params: Promise<{
+    slug: string;
+  }>;
+}) {
   const { slug } = await params;
   const topic = TOPICS.find((t) => t.slug === slug);
   const questions = QUESTIONS[topic?.id ?? ""] ?? [];

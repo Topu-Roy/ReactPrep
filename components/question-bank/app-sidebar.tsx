@@ -1,8 +1,15 @@
 "use client";
 
-import * as React from "react";
-import * as Icons from "lucide-react";
-import Link from "next/link";
+import {
+  Atom,
+  HelpCircle,
+  icons,
+  Layout,
+  LifeBuoy,
+  Settings2,
+  type LucideIcon,
+} from "lucide-react";
+import Link, { type LinkProps } from "next/link";
 import {
   Sidebar,
   SidebarContent,
@@ -28,25 +35,26 @@ const data = {
   navMain: [
     {
       title: "All Topics",
-      url: "/topics",
-      icon: Icons.Layout,
+      url: "/topics" as LinkProps<string>["href"],
+      icon: Layout,
     },
     ...TOPICS.map((topic) => ({
       title: topic.name,
-      url: `/topics/${topic.slug}`,
-      icon: (Icons as unknown as Record<string, Icons.LucideIcon>)[topic.icon] || Icons.HelpCircle,
+      url: `/topics/${topic.slug}` as LinkProps<string>["href"],
+      icon: (icons as unknown as Record<string, LucideIcon>)[topic.icon] || HelpCircle,
     })),
   ],
+  //TODO
   navSecondary: [
     {
       title: "Support",
-      url: "/support",
-      icon: Icons.LifeBuoy,
+      url: "/" as LinkProps<string>["href"],
+      icon: LifeBuoy,
     },
     {
       title: "Settings",
-      url: "/settings",
-      icon: Icons.Settings2,
+      url: "/" as LinkProps<string>["href"],
+      icon: Settings2,
     },
   ],
 };
@@ -60,7 +68,7 @@ export function AppSidebar({ ...props }: React.ComponentProps<typeof Sidebar>) {
             <SidebarMenuButton asChild size="lg">
               <Link href="/" className="flex w-full items-center gap-2">
                 <div className="text-sidebar-primary-foreground flex aspect-square size-8 items-center justify-center rounded-lg bg-blue-600">
-                  <Icons.Atom className="size-4 text-white" />
+                  <Atom className="size-4 text-white" />
                 </div>
                 <div className="grid flex-1 text-left text-sm leading-tight">
                   <span className="truncate font-semibold tracking-wider uppercase">
