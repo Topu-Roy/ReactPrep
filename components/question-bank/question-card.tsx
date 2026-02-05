@@ -4,6 +4,7 @@ import { useState } from "react";
 import { Bookmark, CheckCircle2, Eye, EyeOff, Lightbulb } from "lucide-react";
 import type { Question, QuestionMistake } from "@/lib/data/types";
 import { useQuestionProgress } from "@/lib/hooks/use-progress";
+import { Button } from "../ui/button";
 import { DifficultyBadge } from "./difficulty-badge";
 import { SidebarContent } from "./sidebar-content";
 
@@ -51,17 +52,14 @@ export function QuestionCard({
           >
             <Bookmark className={`mx-auto h-5 w-5 sm:mx-0 ${saved ? "fill-current" : ""}`} />
           </button>
-          <button
+          <Button
             onClick={() => toggleCompleted(question.id)}
-            className={`flex flex-1 items-center justify-center gap-2 rounded-lg border px-4 py-2 text-sm font-semibold transition-all sm:flex-initial sm:justify-start ${
-              completed
-                ? "border-emerald-200 bg-emerald-50 text-emerald-600 dark:border-emerald-800 dark:bg-emerald-950"
-                : "border-emerald-600 bg-emerald-500 text-white shadow-md shadow-emerald-500/20 hover:bg-emerald-600"
-            }`}
+            variant={completed ? "outline" : "default"}
+            className="flex flex-1 items-center justify-center gap-2 px-4 py-2 text-sm font-semibold transition-all sm:flex-initial sm:justify-start"
           >
             <CheckCircle2 className="h-4 w-4" />
             {completed ? "Completed" : "Mark Done"}
-          </button>
+          </Button>
         </div>
       </div>
 
