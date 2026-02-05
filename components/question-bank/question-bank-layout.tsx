@@ -1,18 +1,13 @@
-import { Separator } from "@/components/ui/separator";
-import { SidebarInset, SidebarProvider, SidebarTrigger } from "@/components/ui/sidebar";
+import { SidebarInset, SidebarProvider } from "@/components/ui/sidebar";
 import { AppSidebar } from "./app-sidebar";
+import { QuestionBankHeader } from "./question-bank-header";
 
 export function QuestionBankLayout({ children }: { children: React.ReactNode }) {
   return (
     <SidebarProvider>
       <AppSidebar variant="inset" />
-      <SidebarInset className="w-full min-w-0 overflow-x-hidden">
-        <header className="flex h-16 shrink-0 items-center gap-2 border-b border-gray-200 px-4 transition-[width,height] ease-linear group-has-data-[collapsible=icon]/sidebar-wrapper:h-12 dark:border-gray-800">
-          <div className="flex items-center gap-2 px-4">
-            <SidebarTrigger className="-ml-1" />
-            <Separator orientation="vertical" className="mr-2 h-4" />
-          </div>
-        </header>
+      <SidebarInset className="relative h-svh w-full min-w-0 overflow-x-hidden overflow-y-auto">
+        <QuestionBankHeader />
         <div className="flex flex-1 flex-col gap-4 p-4 pt-0 sm:gap-6">
           <div className="mx-auto w-full max-w-5xl py-4 sm:py-8">{children}</div>
         </div>
