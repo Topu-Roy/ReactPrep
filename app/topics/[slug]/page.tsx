@@ -4,7 +4,7 @@ import { notFound } from "next/navigation";
 import { QuestionBankLayout } from "@/components/question-bank/question-bank-layout";
 import { QuestionList } from "@/components/question-bank/question-list";
 import { QUESTIONS, TOPICS } from "@/lib/data/question-bank";
-import { getHighlightedCode } from "@/lib/shiki";
+import { getHighlightedQuestionAndSolutions } from "./getHighlightedQuestionWithSolutions";
 
 export default async function TopicSlugPage({ params }: PageProps<"/topics/[slug]">) {
   return (
@@ -29,14 +29,7 @@ async function TopicSlugPageContent({
     notFound();
   }
 
-  // Pre-highlight all codes on the server
-  const questionsWithHighlight = await Promise.all(
-    questions.map(async (q) => ({
-      ...q,
-      previewHtml: await getHighlightedCode(q.suboptimalCode, "tsx"),
-      solutionHtml: await getHighlightedCode(q.correctCode, "tsx"),
-    }))
-  );
+  const HighlightedQuestionAndSolutions = await getHighlightedQuestionAndSolutions(questions);
 
   return (
     <QuestionBankLayout>
@@ -53,7 +46,7 @@ async function TopicSlugPageContent({
         </div>
       </div>
 
-      <QuestionList questions={questionsWithHighlight} />
+      <QuestionList questions={HighlightedQuestionAndSolutions} />
     </QuestionBankLayout>
   );
 }
