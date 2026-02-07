@@ -1,5 +1,6 @@
 "use client";
 
+import { Suspense } from "react";
 import {
   Atom,
   HelpCircle,
@@ -82,7 +83,9 @@ export function AppSidebar({ ...props }: React.ComponentProps<typeof Sidebar>) {
         </SidebarMenu>
       </SidebarHeader>
       <SidebarContent className="overflow-hidden">
-        <NavMain items={data.navMain} />
+        <Suspense fallback={<div>Loading...</div>}>
+          <NavMain items={data.navMain} />
+        </Suspense>
         <SidebarSeparator />
         <NavSecondary items={data.navSecondary} className="mt-auto" />
       </SidebarContent>

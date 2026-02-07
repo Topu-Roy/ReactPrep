@@ -1,7 +1,6 @@
 import { Suspense } from "react";
 import Link from "next/link";
 import { notFound } from "next/navigation";
-import { QuestionBankLayout } from "@/components/question-bank/question-bank-layout";
 import { QuestionList } from "@/components/question-bank/question-list";
 import { QUESTIONS, TOPICS } from "@/lib/data/question-bank";
 import { getHighlightedQuestionAndSolutions } from "./getHighlightedQuestionWithSolutions";
@@ -32,7 +31,7 @@ async function TopicSlugPageContent({
   const HighlightedQuestionAndSolutions = await getHighlightedQuestionAndSolutions(questions);
 
   return (
-    <QuestionBankLayout>
+    <>
       <div className="mb-10 flex items-center justify-between">
         <div>
           <Link
@@ -47,6 +46,6 @@ async function TopicSlugPageContent({
       </div>
 
       <QuestionList questions={HighlightedQuestionAndSolutions} />
-    </QuestionBankLayout>
+    </>
   );
 }
