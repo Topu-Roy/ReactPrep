@@ -1,6 +1,6 @@
 import { AlertCircle, AlertTriangle, Info } from "lucide-react";
 import type { QuestionMistake } from "@/lib/data/types";
-import { getHighlightedCode } from "@/lib/shiki";
+import { getHighlightedCode, getHighlighter } from "@/lib/shiki";
 
 interface CodeViewerProps {
   code: string;
@@ -15,12 +15,13 @@ export async function CodeViewer({
   showMistakes = false,
   mistakes = [],
 }: CodeViewerProps) {
-  const html = await getHighlightedCode(code, language);
+  const highlighter = await getHighlighter();
+  const html = await getHighlightedCode(highlighter, code, language);
 
   return (
-    <div className="group relative overflow-hidden rounded-xl border border-gray-200 bg-gray-50 shadow-inner dark:border-gray-800 dark:bg-gray-900">
-      <div className="flex items-center justify-between border-b border-gray-200 bg-gray-100/50 px-4 py-2 dark:border-gray-800 dark:bg-gray-800/50">
-        <span className="font-mono text-xs tracking-widest text-gray-500 uppercase">
+    <div className="bg-card border-border group relative overflow-hidden rounded-xl border shadow-inner">
+      <div className="bg-muted/50 border-border border-b px-4 py-2">
+        <span className="text-muted-foreground font-mono text-xs tracking-widest uppercase">
           {language}
         </span>
       </div>
@@ -47,7 +48,7 @@ export async function CodeViewer({
                     ? "border-rose-500/50 bg-rose-500/5"
                     : mistake.severity === "warning"
                       ? "border-amber-500/50 bg-amber-500/5"
-                      : "border-blue-500/50 bg-blue-50/5"
+                      : "border-primary/50 bg-primary/5"
                 } `}
                 title={mistake.message}
               >
@@ -57,7 +58,7 @@ export async function CodeViewer({
                   ) : mistake.severity === "warning" ? (
                     <AlertTriangle className="h-3 w-3 text-amber-500" />
                   ) : (
-                    <Info className="h-3 w-3 text-blue-500" />
+                    <Info className="text-primary h-3 w-3" />
                   )}
                 </div>
               </div>

@@ -11,7 +11,7 @@ export default function TopicsLayout({
   return (
     <SidebarProvider>
       <AppSidebar variant="inset" />
-      <SidebarInset className="relative h-svh w-full min-w-0 overflow-x-hidden overflow-y-auto">
+      <SidebarInset className="bg-background relative h-svh w-full min-w-0 overflow-x-hidden overflow-y-auto">
         <Suspense fallback={<div>Loading...</div>}>
           <QuestionBankHeader />
         </Suspense>

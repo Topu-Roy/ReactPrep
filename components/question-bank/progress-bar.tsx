@@ -7,14 +7,9 @@ interface ProgressBarProps {
 
 export function ProgressBar({ progress, className }: ProgressBarProps) {
   return (
-    <div
-      className={twMerge(
-        "h-2 w-full overflow-hidden rounded-full bg-gray-100 dark:bg-gray-800",
-        className
-      )}
-    >
+    <div className={twMerge("bg-muted h-2 w-full overflow-hidden rounded-full", className)}>
       <div
-        className="h-full bg-blue-500 transition-all duration-500 ease-out"
+        className="bg-primary h-full transition-all duration-500 ease-out"
         style={{ width: `${Math.min(100, Math.max(0, progress))}%` }}
       />
     </div>

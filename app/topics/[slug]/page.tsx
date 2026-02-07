@@ -36,12 +36,12 @@ async function TopicSlugPageContent({
         <div>
           <Link
             href="/topics"
-            className="mb-2 block text-sm font-bold text-blue-600 hover:underline dark:text-blue-400"
+            className="text-primary mb-2 block text-sm font-bold hover:underline"
           >
             ← Back to All Topics
           </Link>
-          <h1 className="text-4xl font-extrabold text-gray-900 dark:text-white">{topic.name}</h1>
-          <p className="mt-2 text-lg text-gray-500 dark:text-gray-400">{topic.description}</p>
+          <h1 className="text-foreground text-4xl font-extrabold">{topic.name}</h1>
+          <p className="text-muted-foreground mt-2 text-lg">{topic.description}</p>
         </div>
       </div>
 

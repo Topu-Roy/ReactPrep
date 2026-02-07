@@ -68,14 +68,14 @@ export function AppSidebar({ ...props }: React.ComponentProps<typeof Sidebar>) {
           <SidebarMenuItem>
             <SidebarMenuButton asChild size="lg">
               <Link href="/" className="flex w-full items-center gap-2">
-                <div className="text-sidebar-primary-foreground flex aspect-square size-8 items-center justify-center rounded-lg bg-blue-600">
-                  <Atom className="size-4 text-white" />
+                <div className="bg-primary flex aspect-square size-8 items-center justify-center rounded-lg text-white">
+                  <Atom className="size-4" />
                 </div>
-                <div className="grid flex-1 text-left text-sm leading-tight">
+                <div className="text-foreground grid flex-1 text-left text-sm leading-tight">
                   <span className="truncate font-semibold tracking-wider uppercase">
-                    React Prep
+                    ReactKitchen
                   </span>
-                  <span className="truncate text-[10px] opacity-70">v1.2.4</span>
+                  <span className="truncate text-[10px] opacity-70">v1.0.0</span>
                 </div>
               </Link>
             </SidebarMenuButton>

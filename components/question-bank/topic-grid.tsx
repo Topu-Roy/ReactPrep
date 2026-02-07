@@ -20,23 +20,21 @@ export function TopicGrid({ progress = {} }: TopicGridProps) {
           <Link
             key={topic.id}
             href={`/topics/${topic.slug}`}
-            className="group block rounded-xl border border-gray-200 bg-white p-5 shadow-sm transition-all hover:border-blue-500 sm:p-6 dark:border-gray-800 dark:bg-gray-900 dark:hover:border-blue-500"
+            className="bg-card border-border hover:border-primary/50 group block rounded-xl border p-5 shadow-sm transition-all sm:p-6"
           >
             <div className="mb-4 flex items-center gap-4">
-              <div className="rounded-lg bg-blue-50 p-3 text-blue-600 transition-transform group-hover:scale-110 dark:bg-blue-950/30 dark:text-blue-400">
+              <div className="bg-primary/10 text-primary flex items-center justify-center rounded-lg p-3 transition-transform group-hover:scale-110">
                 <Icon className="h-6 w-6" />
               </div>
-              <h3 className="text-lg font-bold text-gray-900 transition-colors group-hover:text-blue-500 dark:text-white">
+              <h3 className="text-foreground group-hover:text-primary text-lg font-bold transition-colors">
                 {topic.name}
               </h3>
             </div>
 
-            <p className="mb-6 line-clamp-2 text-sm text-gray-500 dark:text-gray-400">
-              {topic.description}
-            </p>
+            <p className="text-muted-foreground mb-6 line-clamp-2 text-sm">{topic.description}</p>
 
             <div className="space-y-2">
-              <div className="flex justify-between text-xs font-medium tracking-wider text-gray-400 uppercase">
+              <div className="text-muted-foreground flex justify-between text-xs font-medium tracking-wider uppercase">
                 <span>Progress</span>
                 <span>{topicProgress}%</span>
               </div>

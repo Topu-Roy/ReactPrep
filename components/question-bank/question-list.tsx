@@ -24,8 +24,8 @@ export function QuestionList({ questions }: QuestionListProps) {
 
   return (
     <div className="space-y-6">
-      <div className="flex items-center justify-between border-b pb-6 dark:border-gray-800">
-        <h2 className="text-xl font-bold text-gray-900 dark:text-white">
+      <div className="border-border flex items-center justify-between border-b pb-6">
+        <h2 className="text-foreground text-xl font-bold">
           Questions ({filteredQuestions.length})
         </h2>
         <Tabs value={filter} onValueChange={setFilter} className="w-auto">
@@ -49,8 +49,8 @@ export function QuestionList({ questions }: QuestionListProps) {
             />
           ))
         ) : (
-          <div className="flex flex-col items-center justify-center rounded-2xl border-2 border-dashed border-gray-200 py-20 text-center dark:border-gray-800">
-            <p className="text-lg font-medium text-gray-500 dark:text-gray-400">
+          <div className="border-border flex flex-col items-center justify-center rounded-2xl border-2 border-dashed py-20 text-center">
+            <p className="text-muted-foreground text-lg font-medium">
               No questions found for this difficulty level.
             </p>
           </div>

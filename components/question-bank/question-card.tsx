@@ -27,27 +27,23 @@ export function QuestionCard({
   const saved = isSaved(question.id);
 
   return (
-    <div className="mb-8 overflow-hidden rounded-2xl border border-gray-200 bg-white shadow-sm dark:border-gray-800 dark:bg-gray-950">
+    <div className="bg-card border-border mb-8 overflow-hidden rounded-2xl border shadow-sm">
       {/* Header */}
-      <div className="flex flex-col items-start justify-between gap-4 border-b border-gray-200 p-4 sm:flex-row sm:items-center sm:p-6 dark:border-gray-800">
+      <div className="border-border flex flex-col items-start justify-between gap-4 border-b p-4 sm:flex-row sm:items-center sm:p-6">
         <div className="space-y-1">
           <div className="flex flex-wrap items-center gap-3">
             <DifficultyBadge difficulty={question.difficulty} />
-            <h2 className="text-lg font-bold text-gray-900 sm:text-xl dark:text-white">
-              {question.title}
-            </h2>
+            <h2 className="text-foreground text-lg font-bold sm:text-xl">{question.title}</h2>
           </div>
-          <p className="text-sm leading-relaxed text-gray-500 dark:text-gray-400">
-            {question.description}
-          </p>
+          <p className="text-muted-foreground text-sm leading-relaxed">{question.description}</p>
         </div>
         <div className="flex w-full items-center gap-2 sm:w-auto">
           <button
             onClick={() => toggleSaved(question.id)}
             className={`flex-1 rounded-lg border p-2 transition-all sm:flex-initial ${
               saved
-                ? "border-blue-200 bg-blue-50 text-blue-600 dark:border-blue-800 dark:bg-blue-950"
-                : "border-gray-200 bg-white text-gray-400 hover:text-gray-600 dark:border-gray-700 dark:bg-gray-900"
+                ? "border-primary/20 bg-primary/10 text-primary"
+                : "border-border bg-background text-muted-foreground hover:text-foreground"
             }`}
           >
             <Bookmark className={`mx-auto h-5 w-5 sm:mx-0 ${saved ? "fill-current" : ""}`} />
@@ -64,17 +60,17 @@ export function QuestionCard({
       </div>
 
       {/* Main Content Area */}
-      <div className="flex flex-col divide-y border-gray-200 lg:flex-row lg:divide-x lg:divide-y-0 dark:divide-gray-800">
+      <div className="border-border flex flex-col divide-y lg:flex-row lg:divide-x lg:divide-y-0">
         {/* Main Section (Code or Tips) */}
-        <div className="flex-1 bg-gray-50/50 p-4 sm:p-6 dark:bg-gray-900/30">
+        <div className="bg-muted/30 flex-1 p-4 sm:p-6">
           <div className="mb-4 flex items-center justify-between">
-            <div className="flex items-center gap-1 rounded-lg bg-gray-200/50 p-1 dark:bg-gray-800">
+            <div className="bg-muted flex items-center gap-1 rounded-lg p-1">
               <button
                 onClick={() => setActiveTab("problem")}
                 className={`rounded-md px-3 py-1.5 text-xs font-bold transition-all ${
                   activeTab === "problem"
-                    ? "bg-white text-blue-600 shadow-sm dark:bg-gray-700 dark:text-blue-400"
-                    : "text-gray-500 hover:text-gray-900 dark:text-gray-400 dark:hover:text-gray-200"
+                    ? "bg-background text-primary shadow-sm"
+                    : "text-muted-foreground hover:text-foreground"
                 }`}
               >
                 Problem
@@ -83,8 +79,8 @@ export function QuestionCard({
                 onClick={() => setActiveTab("solution")}
                 className={`rounded-md px-3 py-1.5 text-xs font-bold transition-all ${
                   activeTab === "solution"
-                    ? "bg-white text-blue-600 shadow-sm dark:bg-gray-700 dark:text-blue-400"
-                    : "text-gray-500 hover:text-gray-900 dark:text-gray-400 dark:hover:text-gray-200"
+                    ? "bg-background text-primary shadow-sm"
+                    : "text-muted-foreground hover:text-foreground"
                 }`}
               >
                 Solution
@@ -93,8 +89,8 @@ export function QuestionCard({
                 onClick={() => setActiveTab("pro-tips")}
                 className={`rounded-md px-3 py-1.5 text-xs font-bold transition-all ${
                   activeTab === "pro-tips"
-                    ? "bg-white text-blue-600 shadow-sm dark:bg-gray-700 dark:text-blue-400"
-                    : "text-gray-500 hover:text-gray-900 dark:text-gray-400 dark:hover:text-gray-200"
+                    ? "bg-background text-primary shadow-sm"
+                    : "text-muted-foreground hover:text-foreground"
                 }`}
               >
                 Pro Tips
@@ -103,7 +99,7 @@ export function QuestionCard({
             {activeTab === "problem" && (
               <button
                 onClick={() => setShowMistakes(!showMistakes)}
-                className="flex items-center gap-2 rounded px-2 py-1 text-xs font-bold text-blue-600 transition-colors hover:bg-blue-50 hover:underline dark:text-blue-400 dark:hover:bg-blue-900/30"
+                className="text-primary hover:bg-primary/10 flex items-center gap-2 rounded px-2 py-1 text-xs font-bold transition-colors hover:underline"
               >
                 {showMistakes ? (
                   <EyeOff className="h-3.2 w-3.2" />
@@ -115,10 +111,10 @@ export function QuestionCard({
             )}
           </div>
 
-          <div className="relative overflow-hidden rounded-xl border border-gray-200 bg-white shadow-inner dark:border-gray-800 dark:bg-gray-950">
+          <div className="bg-card border-border relative overflow-hidden rounded-xl border shadow-inner">
             {activeTab === "pro-tips" ? (
               <div className="p-8">
-                <div className="mb-6 flex items-center gap-3 text-blue-600 dark:text-blue-400">
+                <div className="text-primary mb-6 flex items-center gap-3">
                   <Lightbulb className="h-6 w-6" />
                   <h3 className="text-xl font-bold">Pro Tips for {question.title}</h3>
                 </div>
@@ -126,9 +122,9 @@ export function QuestionCard({
                   {question.proTips.map((tip, index) => (
                     <li
                       key={index}
-                      className="flex gap-4 rounded-xl border border-blue-50 bg-blue-50/30 p-4 text-sm leading-relaxed text-gray-700 dark:border-blue-900/20 dark:bg-blue-900/10 dark:text-gray-300"
+                      className="border-primary/20 bg-primary/5 text-foreground flex gap-4 rounded-xl border p-4 text-sm leading-relaxed"
                     >
-                      <span className="flex h-6 w-6 shrink-0 items-center justify-center rounded-full bg-blue-100 text-[11px] font-bold text-blue-600 dark:bg-blue-900/50 dark:text-blue-400">
+                      <span className="bg-primary/20 text-primary flex h-6 w-6 shrink-0 items-center justify-center rounded-full text-[11px] font-bold">
                         {index + 1}
                       </span>
                       {tip}
@@ -162,11 +158,11 @@ export function QuestionCard({
                             ? "border-rose-500/50 bg-rose-500/5 hover:bg-rose-500/10"
                             : mistake.severity === "warning"
                               ? "border-amber-500/50 bg-amber-500/5 hover:bg-amber-500/10"
-                              : "border-blue-500/50 bg-blue-50/5 hover:bg-blue-50/10"
+                              : "border-primary/50 bg-primary/5 hover:bg-primary/10"
                         } relative transition-colors`}
                       >
                         {/* Tooltip on hover */}
-                        <div className="pointer-events-none absolute bottom-full left-4 z-10 mb-2 w-64 rounded-lg border border-gray-800 bg-gray-900 p-2 text-[11px] text-white opacity-0 shadow-xl transition-opacity group-hover/mistake:opacity-100">
+                        <div className="bg-popover border-border text-popover-foreground pointer-events-none absolute bottom-full left-4 z-10 mb-2 w-64 rounded-lg border p-2 text-[11px] opacity-0 shadow-xl transition-opacity group-hover/mistake:opacity-100">
                           <div className="mb-1 flex items-center gap-2 font-bold">
                             <span
                               className={
@@ -178,7 +174,7 @@ export function QuestionCard({
                             <span>Line {mistake.lineNumber}</span>
                           </div>
                           {mistake.message}
-                          <div className="absolute top-full left-4 border-8 border-transparent border-t-gray-900"></div>
+                          <div className="border-t-popover absolute top-full left-4 border-8 border-transparent"></div>
                         </div>
                       </div>
                     </div>
@@ -189,7 +185,7 @@ export function QuestionCard({
         </div>
 
         {/* Sidebar Section */}
-        <div className="w-full bg-white p-4 sm:p-6 lg:w-80 dark:bg-gray-950">
+        <div className="bg-card w-full p-4 sm:p-6 lg:w-80">
           {activeTab === "problem" && <SidebarContent type="hints" content={question.hints} />}
           {activeTab === "solution" && (
             <SidebarContent type="explanation" content={question.explanation} />

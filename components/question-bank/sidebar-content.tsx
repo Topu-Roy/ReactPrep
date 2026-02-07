@@ -12,54 +12,37 @@ export function SidebarContent({ type, content }: SidebarContentProps) {
     hints: {
       icon: HelpCircle,
       title: "Hints",
-      bgColor: "bg-amber-50/50",
-      borderColor: "border-amber-100",
-      iconColor: "text-amber-600",
-      darkBgColor: "dark:bg-amber-950/20",
-      darkBorderColor: "dark:border-amber-900/50",
-      darkIconColor: "dark:text-amber-400",
-      bulletBg: "bg-amber-100",
-      bulletText: "text-amber-600",
-      darkBulletBg: "dark:bg-amber-900/50",
-      darkBulletText: "dark:text-amber-400",
+      bgColor: "bg-amber-500/10",
+      borderColor: "border-amber-500/20",
+      iconColor: "text-amber-500",
+      bulletBg: "bg-amber-500/20",
+      bulletText: "text-amber-500",
     },
     explanation: {
       icon: BookOpen,
       title: "Explanation",
-      bgColor: "bg-emerald-50/50",
-      borderColor: "border-emerald-100",
-      iconColor: "text-emerald-600",
-      darkBgColor: "dark:bg-emerald-950/20",
-      darkBorderColor: "dark:border-emerald-900/50",
-      darkIconColor: "dark:text-emerald-400",
-      bulletBg: "bg-emerald-100",
-      bulletText: "text-emerald-600",
-      darkBulletBg: "dark:bg-emerald-900/50",
-      darkBulletText: "dark:text-emerald-400",
+      bgColor: "bg-emerald-500/10",
+      borderColor: "border-emerald-500/20",
+      iconColor: "text-emerald-500",
+      bulletBg: "bg-emerald-500/20",
+      bulletText: "text-emerald-500",
     },
     tips: {
       icon: Lightbulb,
       title: "Pro Tips",
-      bgColor: "bg-blue-50/50",
-      borderColor: "border-blue-100",
-      iconColor: "text-blue-600",
-      darkBgColor: "dark:bg-blue-950/20",
-      darkBorderColor: "dark:border-blue-900/50",
-      darkIconColor: "dark:text-blue-400",
-      bulletBg: "bg-blue-100",
-      bulletText: "text-blue-600",
-      darkBulletBg: "dark:bg-blue-900/50",
-      darkBulletText: "dark:text-blue-400",
+      bgColor: "bg-primary/10",
+      borderColor: "border-primary/20",
+      iconColor: "text-primary",
+      bulletBg: "bg-primary/20",
+      bulletText: "text-primary",
     },
   }[type];
 
   const Icon = config.icon;
 
   return (
-    <div
-      className={`h-full rounded-xl border ${config.borderColor} ${config.bgColor} p-6 ${config.darkBorderColor} ${config.darkBgColor}`}
-    >
-      <div className={`mb-4 flex items-center gap-2 ${config.iconColor} ${config.darkIconColor}`}>
+    <div className={`h-full rounded-xl border ${config.borderColor} ${config.bgColor} p-6`}>
+      <div className={`mb-4 flex items-center gap-2 ${config.iconColor}`}>
         <Icon className="h-5 w-5" />
         <h3 className="text-sm font-bold tracking-wider uppercase">{config.title}</h3>
       </div>
@@ -67,12 +50,9 @@ export function SidebarContent({ type, content }: SidebarContentProps) {
       {isList ? (
         <ul className="space-y-4">
           {content.map((pill, index) => (
-            <li
-              key={index}
-              className="flex gap-3 text-sm leading-relaxed text-gray-600 dark:text-gray-400"
-            >
+            <li key={index} className="text-muted-foreground flex gap-3 text-sm leading-relaxed">
               <span
-                className={`flex h-5 w-5 shrink-0 items-center justify-center rounded-full ${config.bulletBg} text-[10px] font-bold ${config.bulletText} ${config.darkBulletBg} ${config.darkBulletText}`}
+                className={`flex h-5 w-5 shrink-0 items-center justify-center rounded-full ${config.bulletBg} text-[10px] font-bold ${config.bulletText}`}
               >
                 {index + 1}
               </span>
@@ -81,7 +61,7 @@ export function SidebarContent({ type, content }: SidebarContentProps) {
           ))}
         </ul>
       ) : (
-        <p className="text-sm leading-relaxed text-gray-600 dark:text-gray-400">{content}</p>
+        <p className="text-muted-foreground text-sm leading-relaxed">{content}</p>
       )}
     </div>
   );
