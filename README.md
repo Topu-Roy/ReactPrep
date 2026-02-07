@@ -1,10 +1,10 @@
-# React Prep
+# ReactKitchen
 
-![React Prep](https://placehold.co/1200x600/2563eb/ffffff?text=React+Prep)
+![ReactKitchen](https://placehold.co/1200x600/2563eb/ffffff?text=ReactKitchen)
 
 **Master React Interviews with an Interactive Question Bank.**
 
-React Prep is a premium application designed to help developers ace their React technical interviews. It features a curated collection of questions, interactive code challenges, and deep-dive explanations—all wrapped in a professional, modern user interface.
+ReactKitchen is a premium platform designed to help developers ace their React technical interviews. It features a curated collection of questions, interactive code challenges, and deep-dive explanations—all wrapped in a professional, modern user interface.
 
 ## 🚀 Key Features
 
@@ -38,8 +38,8 @@ Ensure you have [Bun](https://bun.sh/) installed on your machine.
 1.  **Clone the repository**
 
     ```bash
-    git clone https://github.com/yourusername/react-prep.git
-    cd react-prep
+    git clone https://github.com/yourusername/react-kitchen.git
+    cd react-kitchen
     ```
 
 2.  **Install dependencies**
