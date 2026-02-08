@@ -1,6 +1,7 @@
 import type { Metadata } from "next";
 import { Rubik } from "next/font/google";
 import "./globals.css";
+import { TanstackQueryProvider } from "@/lib/tanstack-query";
 
 const rubik = Rubik({
   variable: "--font-rubik",
@@ -19,7 +20,9 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="en" className={"bg-background"}>
-      <body className={`${rubik.variable} font-sans antialiased`}>{children}</body>
+      <body className={`${rubik.variable} font-sans antialiased`}>
+        <TanstackQueryProvider>{children}</TanstackQueryProvider>
+      </body>
     </html>
   );
 }
