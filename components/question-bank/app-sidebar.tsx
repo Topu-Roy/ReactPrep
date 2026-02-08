@@ -75,7 +75,7 @@ export function AppSidebar({ ...props }: React.ComponentProps<typeof Sidebar>) {
                   <span className="truncate font-semibold tracking-wider uppercase">
                     ReactKitchen
                   </span>
-                  <span className="truncate text-[10px] opacity-70">v1.0.0</span>
+                  <span className="truncate text-[10px] opacity-70">v1.1.0</span>
                 </div>
               </Link>
             </SidebarMenuButton>
