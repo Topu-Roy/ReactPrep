@@ -11,6 +11,7 @@ import {
   SidebarMenuButton,
   SidebarMenuItem,
 } from "@/components/ui/sidebar";
+import { Skeleton } from "../ui/skeleton";
 
 export function NavMain({
   items,
@@ -40,6 +41,29 @@ export function NavMain({
               </SidebarMenuItem>
             );
           })}
+        </SidebarMenu>
+      </SidebarGroupContent>
+    </SidebarGroup>
+  );
+}
+
+export function SidebarSkeleton() {
+  return (
+    <SidebarGroup>
+      <SidebarGroupContent>
+        <SidebarMenu>
+          {/* We render 5 placeholder items to fill the vertical space */}
+          {[1, 2, 3, 4, 5].map((i) => (
+            <SidebarMenuItem key={i}>
+              <div className="flex w-full items-center gap-2 px-2 py-1.5">
+                {/* Icon Placeholder */}
+                <Skeleton className="h-4 w-4 shrink-0 rounded" />
+
+                {/* Text Placeholder - Hidden when sidebar is collapsed to icon mode */}
+                <Skeleton className="h-4 w-24 group-data-[collapsible=icon]:hidden" />
+              </div>
+            </SidebarMenuItem>
+          ))}
         </SidebarMenu>
       </SidebarGroupContent>
     </SidebarGroup>

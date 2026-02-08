@@ -1,7 +1,10 @@
 import { Suspense } from "react";
 import { SidebarInset, SidebarProvider } from "@/components/ui/sidebar";
 import { AppSidebar } from "@/components/question-bank/app-sidebar";
-import { QuestionBankHeader } from "@/components/question-bank/question-bank-header";
+import {
+  HeaderSkeleton,
+  QuestionBankHeader,
+} from "@/components/question-bank/question-bank-header";
 
 export default function TopicsLayout({
   children,
@@ -12,7 +15,7 @@ export default function TopicsLayout({
     <SidebarProvider>
       <AppSidebar variant="inset" />
       <SidebarInset className="bg-background relative h-svh w-full min-w-0 overflow-x-hidden overflow-y-auto">
-        <Suspense fallback={<div>Loading...</div>}>
+        <Suspense fallback={<HeaderSkeleton />}>
           <QuestionBankHeader />
         </Suspense>
         <div className="flex flex-1 flex-col gap-4 p-4 pt-0 sm:gap-6">

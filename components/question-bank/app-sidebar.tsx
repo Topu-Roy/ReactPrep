@@ -23,7 +23,7 @@ import {
   SidebarSeparator,
 } from "@/components/ui/sidebar";
 import { TOPICS } from "@/lib/data/question-bank";
-import { NavMain } from "./nav-main";
+import { NavMain, SidebarSkeleton } from "./nav-main";
 import { NavSecondary } from "./nav-secondary";
 import { NavUser } from "./nav-user";
 
@@ -83,7 +83,7 @@ export function AppSidebar({ ...props }: React.ComponentProps<typeof Sidebar>) {
         </SidebarMenu>
       </SidebarHeader>
       <SidebarContent className="overflow-hidden">
-        <Suspense fallback={<div>Loading...</div>}>
+        <Suspense fallback={<SidebarSkeleton />}>
           <NavMain items={data.navMain} />
         </Suspense>
         <SidebarSeparator />

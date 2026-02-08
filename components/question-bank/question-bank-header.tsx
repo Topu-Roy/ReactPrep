@@ -13,6 +13,7 @@ import {
 import { Separator } from "@/components/ui/separator";
 import { SidebarTrigger } from "@/components/ui/sidebar";
 import { TOPICS } from "@/lib/data/question-bank";
+import { Skeleton } from "../ui/skeleton";
 
 export function QuestionBankHeader() {
   const pathname = usePathname();
@@ -80,6 +81,26 @@ export function QuestionBankHeader() {
             })}
           </BreadcrumbList>
         </Breadcrumb>
+      </div>
+    </header>
+  );
+}
+
+export function HeaderSkeleton() {
+  return (
+    <header className="bg-background/50 border-border sticky top-0 z-10 flex h-16 shrink-0 items-center gap-2 border-b px-4 backdrop-blur-md transition-[width,height] ease-linear group-has-data-[collapsible=icon]/sidebar-wrapper:h-12">
+      <div className="flex w-full items-center gap-2 px-4">
+        <Skeleton className="h-8 w-8 rounded-md" />
+        <Separator orientation="vertical" className="mr-2 h-4" />
+        <div className="flex items-center gap-2 overflow-hidden">
+          <Skeleton className="hidden h-4 w-24 sm:block" />
+          <Skeleton className="hidden h-3 w-3 rotate-12 sm:block" />
+          <Skeleton className="h-4 w-20" />
+          <div className="hidden items-center gap-2 md:flex">
+            <Skeleton className="h-3 w-3 rotate-12" />
+            <Skeleton className="h-4 w-32" />
+          </div>
+        </div>
       </div>
     </header>
   );
