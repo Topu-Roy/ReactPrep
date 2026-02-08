@@ -1,50 +1,12 @@
-import { ArrowRight, Code2, Cpu, Layout, Zap } from "lucide-react";
+import { ArrowRight, Cpu, Layout, Zap } from "lucide-react";
 import Link from "next/link";
-import { MobileNav } from "@/components/landing-mobile-nav";
+import { Navbar } from "@/components/navbar";
 
 export default function Home() {
   return (
     <div className="bg-background text-foreground flex min-h-screen flex-col">
       {/* Header / Nav */}
-      <header className="border-border/40 bg-background/60 sticky top-0 z-50 w-full border-b backdrop-blur-xl">
-        <div className="mx-auto flex h-16 max-w-7xl items-center justify-between px-6 lg:px-8">
-          <div className="flex items-center gap-2">
-            <MobileNav />
-            <div className="bg-primary shadow-primary/20 flex h-8 w-8 items-center justify-center rounded-lg text-white shadow-lg">
-              <Code2 className="h-5 w-5" />
-            </div>
-            <span className="text-foreground text-lg font-bold tracking-tight">ReactKitchen</span>
-          </div>
-          <nav className="hidden items-center gap-8 text-sm font-medium md:flex">
-            <Link
-              href="/topics"
-              className="text-muted-foreground hover:text-primary transition-colors"
-            >
-              Question Bank
-            </Link>
-            <Link href="#" className="text-muted-foreground hover:text-primary transition-colors">
-              Features
-            </Link>
-            <Link href="#" className="text-muted-foreground hover:text-primary transition-colors">
-              Pricing
-            </Link>
-          </nav>
-          <div className="hidden items-center gap-4 md:flex">
-            <Link
-              href="/topics"
-              className="text-muted-foreground hover:text-foreground text-sm font-medium transition-colors"
-            >
-              Sign In
-            </Link>
-            <Link
-              href="/topics"
-              className="bg-primary text-primary-foreground shadow-primary/20 hover:bg-primary/90 rounded-lg px-4 py-2 text-sm font-semibold shadow-lg transition-all"
-            >
-              Get Started
-            </Link>
-          </div>
-        </div>
-      </header>
+      <Navbar />
 
       {/* Hero Section */}
       <main className="flex-1">
