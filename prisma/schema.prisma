@@ -94,3 +94,65 @@ model Passkey {
   @@index([credentialID])
   @@map("passkey")
 }
+
+// Enums for Question system
+enum Difficulty {
+  EASY
+  MEDIUM
+  HARD
+}
+
+enum Severity {
+  warning
+  error
+  info
+}
+
+// Topic model for categorizing questions
+model Topic {
+  id          String     @id @default(uuid())
+  slug        String     @unique
+  name        String
+  description String
+  icon        String
+  createdAt   DateTime   @default(now())
+  updatedAt   DateTime   @updatedAt
+  questions   Question[]
+
+  @@map("topic")
+}
+
+// Question model for storing interview questions
+model Question {
+  id             String            @id @default(uuid())
+  slug           String            @unique
+  title          String
+  difficulty     Difficulty
+  description    String
+  correctCode    String
+  suboptimalCode String
+  proTips        String[]
+  hints          String[]
+  explanation    String
+  topicId        String
+  topic          Topic             @relation(fields: [topicId], references: [id], onDelete: Cascade)
+  mistakes       QuestionMistake[]
+  createdAt      DateTime          @default(now())
+  updatedAt      DateTime          @updatedAt
+
+  @@index([topicId])
+  @@map("question")
+}
+
+// QuestionMistake model for storing code mistakes
+model QuestionMistake {
+  id         String   @id @default(uuid())
+  lineNumber Int
+  message    String
+  severity   Severity
+  questionId String
+  question   Question @relation(fields: [questionId], references: [id], onDelete: Cascade)
+
+  @@index([questionId])
+  @@map("question_mistake")
+}
