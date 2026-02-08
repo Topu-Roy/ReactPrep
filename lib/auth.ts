@@ -9,14 +9,12 @@ import { admin } from "better-auth/plugins";
 import { headers } from "next/headers";
 
 export const auth = betterAuth({
-  appName: "My app",
+  appName: "ReactKitchen",
+
   database: prismaAdapter(db, {
     provider: "postgresql",
   }),
-  emailAndPassword: {
-    enabled: true,
-    autoSignIn: true,
-  },
+
   socialProviders: {
     github: {
       clientId: env.GITHUB_CLIENT_ID,
