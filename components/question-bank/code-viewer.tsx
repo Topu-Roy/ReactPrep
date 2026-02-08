@@ -2,7 +2,7 @@ import { AlertCircle, AlertTriangle, Info } from "lucide-react";
 import type { QuestionMistake } from "@/lib/data/types";
 import { getHighlightedCode, getHighlighter } from "@/lib/shiki";
 
-interface CodeViewerProps {
+type CodeViewerProps = {
   code: string;
   language?: string;
   showMistakes?: boolean;

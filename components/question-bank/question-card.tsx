@@ -8,7 +8,7 @@ import { Button } from "../ui/button";
 import { DifficultyBadge } from "./difficulty-badge";
 import { SidebarContent } from "./sidebar-content";
 
-interface QuestionCardProps {
+type QuestionCardProps = {
   question: Question;
   highlightedCode: string; // Problem HTML
   highlightedSolution: string; // Solution HTML

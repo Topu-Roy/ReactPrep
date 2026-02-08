@@ -1,7 +1,7 @@
 import { BookOpen, HelpCircle, Lightbulb } from "lucide-react";
 import { cn } from "@/lib/utils";
 
-interface SidebarContentProps {
+type SidebarContentProps = {
   type: "hints" | "explanation" | "tips";
   content: string | string[];
 }

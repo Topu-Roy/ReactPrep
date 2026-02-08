@@ -1,6 +1,6 @@
 import { twMerge } from "tailwind-merge";
 
-interface ProgressBarProps {
+type ProgressBarProps = {
   progress: number; // 0 to 100
   className?: string;
 }

@@ -1,14 +1,14 @@
 export type Difficulty = "EASY" | "MEDIUM" | "HARD";
 export type Severity = "warning" | "error" | "info";
 
-export interface QuestionMistake {
+export type QuestionMistake = {
   id: string;
   lineNumber: number;
   message: string;
   severity: Severity;
-}
+};
 
-export interface Question {
+export type Question = {
   id: string;
   slug: string;
   title: string;
@@ -20,12 +20,12 @@ export interface Question {
   proTips: string[];
   hints: string[];
   explanation: string;
-}
+};
 
-export interface Topic {
+export type Topic = {
   id: string;
   slug: string;
   name: string;
   description: string;
-  icon: string; // Lucide icon name
-}
+  icon: string;
+};

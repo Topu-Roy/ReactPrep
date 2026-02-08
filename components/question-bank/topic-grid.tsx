@@ -3,10 +3,9 @@ import Link from "next/link";
 import { TOPICS } from "@/lib/data/question-bank";
 import { ProgressBar } from "./progress-bar";
 
-interface TopicGridProps {
-  // We can pass progress data here later
+type TopicGridProps = {
   progress?: Record<string, number>;
-}
+};
 
 export function TopicGrid({ progress = {} }: TopicGridProps) {
   return (

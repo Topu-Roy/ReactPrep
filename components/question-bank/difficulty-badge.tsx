@@ -1,10 +1,10 @@
 import { twMerge } from "tailwind-merge";
 import type { Difficulty } from "@/lib/data/types";
 
-interface DifficultyBadgeProps {
+type DifficultyBadgeProps = {
   difficulty: Difficulty;
   className?: string;
-}
+};
 
 const DIFFICULTY_STYLES: Record<Difficulty, string> = {
   EASY: "bg-emerald-500/10 text-emerald-500 border-emerald-500/20",

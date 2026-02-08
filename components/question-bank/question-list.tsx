@@ -5,14 +5,14 @@ import { Tabs, TabsList, TabsTrigger } from "@/components/ui/tabs";
 import type { Question } from "@/lib/data/types";
 import { QuestionCard } from "./question-card";
 
-interface QuestionWithHighlight extends Question {
+type QuestionWithHighlight = Question & {
   previewHtml: string;
   solutionHtml: string;
-}
+};
 
-interface QuestionListProps {
+type QuestionListProps = {
   questions: QuestionWithHighlight[];
-}
+};
 
 export function QuestionList({ questions }: QuestionListProps) {
   const [filter, setFilter] = useState<string>("ALL");

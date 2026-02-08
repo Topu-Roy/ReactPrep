@@ -2,10 +2,10 @@
 
 import { useEffect, useState } from "react";
 
-interface ProgressState {
+type ProgressState = {
   completed: string[]; // Question IDs
   saved: string[]; // Question IDs
-}
+};
 
 export function useQuestionProgress() {
   const [mounted, setMounted] = useState(false);
