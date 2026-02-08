@@ -1,15 +1,7 @@
 "use client";
 
 import { Suspense } from "react";
-import {
-  Atom,
-  HelpCircle,
-  icons,
-  Layout,
-  LifeBuoy,
-  Settings2,
-  type LucideIcon,
-} from "lucide-react";
+import { Atom, Layout, LifeBuoy, Settings2 } from "lucide-react";
 import Link, { type LinkProps } from "next/link";
 import {
   Sidebar,
@@ -22,6 +14,7 @@ import {
   SidebarRail,
   SidebarSeparator,
 } from "@/components/ui/sidebar";
+import { getTopicIcon } from "@/lib/constants/topic-icons";
 import { TOPICS } from "@/lib/data/question-bank";
 import { NavMain, SidebarSkeleton } from "./nav-main";
 import { NavSecondary } from "./nav-secondary";
@@ -42,7 +35,7 @@ const data = {
     ...TOPICS.map((topic) => ({
       title: topic.name,
       url: `/topics/${topic.slug}` as LinkProps<string>["href"],
-      icon: (icons as unknown as Record<string, LucideIcon>)[topic.icon] || HelpCircle,
+      icon: getTopicIcon(topic.slug),
     })),
   ],
   //TODO

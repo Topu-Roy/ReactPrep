@@ -49,7 +49,6 @@ export const createTopicSchema = z.object({
     .regex(/^[a-z0-9-]+$/, "Slug must be lowercase with hyphens only"),
   name: z.string().min(1, "Name is required"),
   description: z.string().min(1, "Description is required"),
-  icon: z.string().min(1, "Icon is required"),
 });
 
 export const updateTopicSchema = createTopicSchema.partial().extend({

@@ -1,5 +1,5 @@
-import * as Icons from "lucide-react";
 import Link from "next/link";
+import { getTopicIcon } from "@/lib/constants/topic-icons";
 import { TOPICS } from "@/lib/data/question-bank";
 import { ProgressBar } from "./progress-bar";
 
@@ -11,8 +11,7 @@ export function TopicGrid({ progress = {} }: TopicGridProps) {
   return (
     <div className="grid grid-cols-1 gap-6 md:grid-cols-2 lg:grid-cols-3">
       {TOPICS.map((topic) => {
-        const Icon =
-          (Icons as unknown as Record<string, React.ElementType>)[topic.icon] || Icons.HelpCircle;
+        const Icon = getTopicIcon(topic.slug);
         const topicProgress = progress[topic.id] || 0;
 
         return (
