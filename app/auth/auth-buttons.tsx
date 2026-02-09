@@ -46,7 +46,7 @@ export function AuthButtons() {
         ) : (
           <>
             <Github />
-            Login with Apple
+            Login with Github
           </>
         )}
       </Button>
