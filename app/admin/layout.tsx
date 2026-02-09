@@ -1,8 +1,17 @@
+import { Suspense } from "react";
 import { getServerAuthSession } from "@/auth/auth";
 import Link from "next/link";
 import { redirect } from "next/navigation";
 
 export default async function AdminLayout({ children }: { children: React.ReactNode }) {
+  return (
+    <Suspense fallback={<div>Loading...</div>}>
+      <AdminWrapper>{children}</AdminWrapper>
+    </Suspense>
+  );
+}
+
+async function AdminWrapper({ children }: { children: React.ReactNode }) {
   const session = await getServerAuthSession();
 
   // Check if user is authenticated and has admin role
@@ -25,6 +34,12 @@ export default async function AdminLayout({ children }: { children: React.ReactN
                 className="text-foreground/60 hover:text-foreground/80 transition-colors"
               >
                 Questions
+              </Link>
+              <Link
+                href="/admin/settings"
+                className="text-foreground/60 hover:text-foreground/80 transition-colors"
+              >
+                Settings
               </Link>
             </nav>
           </div>
