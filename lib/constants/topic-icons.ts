@@ -7,5 +7,5 @@ export const TOPIC_ICONS: Record<string, LucideIcon> = {
 };
 
 export function getTopicIcon(slug: string): LucideIcon {
-  return TOPIC_ICONS[slug] || HelpCircle;
+  return TOPIC_ICONS[slug] ?? HelpCircle;
 }
